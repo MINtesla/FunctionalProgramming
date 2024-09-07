@@ -1,11 +1,26 @@
 package FunctionalProgramming;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class FN01Programming {
+public class FN01StreamIntermediateAndTerminal {
     public static void main(String[] args){
-        printAllNumberInListFunctionalApproach(List.of(1,2,3,4));
-        int num = addListFuntionalApproach(List.of(3,4,6,7));
+        List<Integer> numbers = List.of(3,4,6,7,8,9,11);
+//        printAllNumberInListFunctionalApproach(List.of(1,2,3,4));
+//        int num = addListFuntionalApproach(numbers);
+        List<Integer> doubleNumbers = doubleList(numbers);
+        System.out.println(doubleNumbers.toString());
+    }
+
+    private static List<Integer> doubleList(List<Integer> numbers) {
+       return  numbers.stream()
+                .map(itr->itr*itr)
+                .collect(Collectors.toList());
+//        List<Integer> doubleNumbers = new ArrayList<>();
+//        for(Integer itr :numbers){
+//            doubleNumbers.add(itr*itr);
+//        }
+//        return doubleNumbers;
     }
 
     private static int addListFuntionalApproach(List<Integer> integers) {
@@ -29,8 +44,8 @@ public class FN01Programming {
     }
     private static void printAllNumberInListFunctionalApproach(List<Integer> integers) {
         integers.stream() // stream of all element
-                .filter(FN01Programming::isEven)  // method to check in filter that need to be processed
-                .forEach(FN01Programming::print); // method reference
+                .filter(FN01StreamIntermediateAndTerminal::isEven)  // method to check in filter that need to be processed
+                .forEach(FN01StreamIntermediateAndTerminal::print); // method reference
 
         integers.stream()
                 .filter(number->number%2==1) // Lambda Expression
